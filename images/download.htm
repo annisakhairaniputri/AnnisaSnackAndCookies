@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annisa Snack And Cookies - Toko Snack & Kue Terbaik di Payakumbuh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --primary-dark: #6B3410;
+            --accent: #D4A574;
+            --cream: #FFF8E7;
+            --warm-white: #FAF6F0;
+            --text-dark: #2C2013;
+            --text-light: #6B5D4F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 248, 231, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(139, 69, 19, 0.1);
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 90vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* GANTI URL GAMBAR HERO DI BAWAH INI */
+        .slide-1 { 
+            background-image: url('images/hero1.jpg'); 
+            /* Jika belum ada gambar, akan tampil gradient */
+            background-color: #D4A574;
+        }
+        .slide-2 { 
+            background-image: url('images/hero2.jpg'); 
+            background-color: #C19A6B;
+        }
+        .slide-3 { 
+            background-image: url('images/hero3.jpg'); 
+            background-color: #DEB887;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(44, 32, 19, 0.3), rgba(44, 32, 19, 0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: var(--cream);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            /* GANTI URL GAMBAR ABOUT DI BAWAH INI */
+            background-image: url('images/download.jfif');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--accent); /* Fallback color */
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(139, 69, 19, 0.2);
+            animation: fadeInLeft 1s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-content {
+            animation: fadeInRight 1s ease;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-style: italic;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background: var(--cream);
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .menu-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            transition: all 0.4s ease;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(139, 69, 19, 0.2);
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--accent); /* Fallback color */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--accent); /* Fallback color */
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 69, 19, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float::before {
+            content: '💬';
+            font-size: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-content h2 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Annisa Snack And Cookies</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <!-- GANTI FOTO HERO: Edit class .slide-1, .slide-2, .slide-3 di bagian CSS -->
+            <div class="slide slide-1 active"></div>
+            <div class="slide slide-2"></div>
+            <div class="slide slide-3"></div>
+        </div>
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Selamat Datang di Annisa Snack And Cookies</h1>
+                <p>Pilih menu apa hari ini?</p>
+                <a href="#menu" class="cta-button">Lihat Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <!-- GANTI FOTO ABOUT: Edit class .about-image di bagian CSS -->
+        <div class="about-image"></div>
+        <div class="about-content">
+            <h2>Selamat Datang di Annisa Snack And Cookies</h2>
+            <p>Annisa Snack and Cookies merupakan toko kue rumahan di Payakumbuh yang menyediakan berbagai macam aneka snack, cookies, kue kering, kue basah, kue tradisional, paket snack, parcel, dan masih banyak lagi produk yang kami tawarkan.</p>
+            <p>Berdiri pada tanggal 07 Agustus 2005, kini Annisa Snack And Cookies hadir di Payakumbuh Kami juga membuka layanan secara online via WhatsApp, Instagram dan bekerja sama dengan beberapa vendor Ojek Online.</p>
+            <p>Semua produk Annisa Snack And Cookies Kami Pastikan Halal </p>
+            <div class="tagline">
+              “Masalah Cemilan? Annisa Snack And Cookies Jawabannya.”
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="section-header">
+            <h2>Mari Lihat Menu Kami Dear</h2>
+            <p>Pilihan menu spesial kami untuk setiap momen istimewa Anda</p>
+        </div>
+        <div class="menu-grid">
+            
+            <!-- MENU CARD 1 - GANTI GAMBAR DI style="" -->
+            <div class="menu-card">
+                <div class="menu-image" style="background-image: url('images/Menu1.jfif');"></div>
+                <div class="menu-info">
+                <h3>KUE KERING</h3>
+                </div>
+            </div>
+
+            <!-- MENU CARD 2 - GANTI GAMBAR DI style="" -->
+            <div class="menu-card">
+                <div class="menu-image" style="background-image: url('images/Menu2.jfif');"></div>
+                <div class="menu-info">
+                    <h3>KUE BASAH</h3>
+                </div>
+            </div>
+
+            <!-- MENU CARD 3 - GANTI GAMBAR DI style="" -->
+            <div class="menu-card">
+                <div class="menu-image" style="background-image: url('images/Menu3.jfif');"></div>
+                <div class="menu-info">
+                    <h3>CEMILAN RUMAHAN</h3>
+                </div>
+            </div>
+
+            <!-- MENU CARD 4 - GANTI GAMBAR DI style="" -->
+            <div class="menu-card">
+                <div class="menu-image" style="background-image: url('images/Menu4.jpg');"></div>
+                <div class="menu-info">
+                    <h3>GORENGAN RUMAHAN</h3>
+                </div>
+            </div>
+
+            <!-- MENU CARD 5 - GANTI GAMBAR DI style="" -->
+            <div class="menu-card">
+                <div class="menu-image" style="background-image: url('images/menu5.jfif');"></div>
+                <div class="menu-info">
+                    <h3>Kue Tradisional</h3>
+                </div>
+            </div>
+
+            <!-- MENU CARD 6 - GANTI GAMBAR DI style="" -->
+            <div class="menu-card">
+                <div class="menu-image" style="background-image: url('images/Menu6.jfif');"></div>
+                <div class="menu-info">
+                    <h3>Paket Special dengan berbagai pilihan kue kering, cemilan, dan gorengan</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+            <div class="section-header">
+            <h3>Untuk Info Lebih Lanjut Hubungi Kami Yaa Dear</h3>
+            </div>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Annisa Snack And Cookies</h3>
+                <p>Toko snack dan kue terbaik di Kota Payakumbuh 2005. Masalah Cemilan? Annisa Snack And Cookies Jawabannya.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>📞 083181121760</p>
+                <p>📧 AnnisaSnackAndCookies@gmail.com</p>
+                <p>📱 WhatsApp: +6283181121760</p>
+            </div>
+            <div class="footer-section">
+                <h3>Lokasi</h3>
+                <p>Jl. Puyuh, Nankodok, Tigo Koto Dibaruah</p>
+                <p>Payakumbuh, Sumatera Barat</p>
+                <p>Jam Operasional</p>
+                <p>10.00 - 20.00</p>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <a href="#">Facebook: annisakp</a>
+                <a href="#">Instagram: @annsakp</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Annisa Snack And Cookies. All Rights Reserved.</p>
+            <p>Love Galih Arlanda</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://api.whatsapp.com/send?phone=6283181121760&text=Halo%20Annisa%20Snack%20And%20Cookies..." target="_blank" class="whatsapp-float"></a>
+
+    <script>
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        setInterval(nextSlide, 4000);
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
